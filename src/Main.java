@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,10 +32,6 @@ public class Main {
             }
             return Integer.compare(countOne, countTwo);
         };
-
-        Predicate<Person> isLegalAge = n -> n.getAge() < 18;
-
-        people.removeIf(isLegalAge);
 
         people.sort(comparator.reversed());
         System.out.println("Список самых знатных людей:" + people.toString().replaceAll("^\\[|]", ""));
