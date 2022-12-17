@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,8 +9,10 @@ public class Main {
         people.add(new Person("Василий", "Теркин", 23));
         people.add(new Person("Генадий", "Валентинов-Петров", 65));
         people.add(new Person("Ольга", "Королева", 19));
+        people.add(new Person("Николай ", "Римский-Корсаков", 9));
         people.add(new Person("Анри", "ги де Мопассан", 39));
         people.add(new Person("Сепп", "Ван дер берг", 51));
+        people.add(new Person("Анна", "Васильева", 15));
 
         Comparator<Person> comparator = (a, b) -> {
             int countOne = 1;
@@ -30,6 +33,10 @@ public class Main {
             }
             return Integer.compare(countOne, countTwo);
         };
+
+        Predicate<Person> isLegalAge = n -> n.getAge() < 18;
+
+        people.removeIf(isLegalAge);
 
         people.sort(comparator.reversed());
         System.out.println("Список самых знатных людей:" + people.toString().replaceAll("^\\[|]", ""));
